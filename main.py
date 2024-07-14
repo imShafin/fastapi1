@@ -5,7 +5,18 @@ from api import courses, sections, users
 
 
 
-app = FastAPI()
+app = FastAPI(
+   title="Fast API LMS",
+   description="LMS for managing students and courses.",
+   version="0.0.1",
+   contact={
+      "name": "Izazur Rahman Shafin",
+      "email": "shafin@outlook.com"
+   },
+   license_info={
+      "name": "MIT"
+   }
+)
 
 app.include_router(courses.router)
 app.include_router(users.router)
