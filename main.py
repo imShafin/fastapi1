@@ -1,6 +1,4 @@
-from fastapi import FastAPI, Path, Query, Request
-from pydantic import BaseModel
-from typing import Optional, List 
+from fastapi import FastAPI, Request 
 from fastapi.responses import JSONResponse
 
 from api import courses, sections, users
