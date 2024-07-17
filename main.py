@@ -1,9 +1,12 @@
-from fastapi import FastAPI, Path, Query
-from pydantic import BaseModel
-from typing import Optional, List 
+from fastapi import FastAPI, Request 
+from fastapi.responses import JSONResponse
+
 from api import courses, sections, users
+from db.db_setup import engine
+from db.models import user, course
 
-
+user.Base.metadata.create_all(bind=engine)
+course.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
    title="Fast API LMS",
@@ -21,3 +24,10 @@ app = FastAPI(
 app.include_router(courses.router)
 app.include_router(users.router)
 app.include_router(sections.router)
+
+@app.exception_handler(ValueError)
+async def value_error_exception_handler(request: Request, exc: ValueError):
+    return JSONResponse(
+        status_code=400,
+        content={"message": str(exc)},
+    )

@@ -287,3 +287,7 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,linux,macos,vim,visualstudiocode,python
+
+# my configurations...
+main_demo.py
+alembic/
